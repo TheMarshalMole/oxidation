@@ -1,0 +1,11 @@
+[package]
+name = "oxidation"
+version = "0.0.1"
+authors = ["Cristian Sandu (csandu)"]
+edition = "2018"
+
+# this is a rust library. It is imported statically in other projects
+[lib]
+crate-type = ["lib"]
+
+[dependencies]
