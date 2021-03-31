@@ -9,8 +9,16 @@ macro_rules! declare_entry {
         }
 
         #[cfg(target_os = "linux")]
-        () => {
-            module_init($funct(3));
+        loop {}
+    };
+}
+
+#[macro_export]
+macro_rules! declare_panic {
+    () => {
+        #[panic_handler]
+        fn panic(panicInfo: &oxidation::PanicInfo) -> ! {
+            loop {}
         }
     };
 }
@@ -26,8 +34,8 @@ macro_rules! declare_leave {
         }
 
         #[cfg(target_os = "linux")]
-        () => {
-            module_init($funct(3));
+        fn panic(panicInfo: &oxidation::PanicInfo) -> ! {
+            loop {}
         }
     };
 }

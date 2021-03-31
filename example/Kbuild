@@ -1,0 +1,12 @@
+obj-m := $(PROJECT_NAME).o
+$(PROJECT_NAME)-objs := $(PROJECT_NAME).rust.o
+
+export c_flags
+
+$(src)/target/$(TARGET)/debug/lib$(PROJECT_NAME).a: cargo_will_determine_dependencies
+	cd $(src); $(CARGO) build --target=$(TARGET)
+
+.PHONY: cargo_will_determine_dependencies
+
+%.rust.o: target/$(TARGET)/debug/lib%.a
+	$(LD) -r -o $@ --whole-archive -fuse-ld=bfd $<

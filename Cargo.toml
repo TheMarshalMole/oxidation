@@ -4,8 +4,15 @@ version = "0.0.1"
 authors = ["Cristian Sandu (csandu)"]
 edition = "2018"
 
-# this is a rust library. It is imported statically in other projects
 [lib]
 crate-type = ["lib"]
 
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+
 [dependencies]
+bindgen = "0.54"
+cc = "1.0"
